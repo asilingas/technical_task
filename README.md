@@ -8,27 +8,34 @@ activity, UserPaymentsReportGenerator generates report about payments, made by u
 You get the idea, right?
 
 Your job is to write 3 classes:
-    1. ReportHandlerCommand
-        a. Command name should be report:handler
-        b. You must pass one mandatory argument report_generator_name like
+1. ReportHandlerCommand
+a. Command name should be report:handler
+b. You must pass one mandatory argument report_generator_name like
 user_activity
-        c. Handler by given argument should execute relevant generator’s method
+c. Handler by given argument should execute relevant generator’s method
 generate()
-    2. UserActivityReportGenerator
-        a. Class must contain single method generate() which outputs following text “User
+
+2. UserActivityReportGenerator
+a. Class must contain single method generate() which outputs following text “User
 Activity Generator” when executed
-    3. UserPaymentsReportGenerator
-        a. Class must contain single method generate() which outputs following text “User
+
+3. UserPaymentsReportGenerator
+a. Class must contain single method generate() which outputs following text “User
 Payments Parser” when executed
 
 
 Requirements:
-    1. Method generate() is mandatory. Make sure each generator implements it.
-    2. Generators are not Symfony Commands.
-    3. Handler should know automatically about new generators. You cannot pass generators
+
+1. Method generate() is mandatory. Make sure each generator implements it.
+
+2. Generators are not Symfony Commands.
+
+3. Handler should know automatically about new generators. You cannot pass generators
 to Handler’s __construct() method
-    4. Use Symfony 3.4
-    5. Use tags
+
+4. Use Symfony 3.4
+
+5. Use tags
     
     
 Desired example:
