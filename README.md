@@ -9,17 +9,22 @@ You get the idea, right?
 
 Your job is to write 3 classes:
 1. ReportHandlerCommand
+
 a. Command name should be report:handler
+
 b. You must pass one mandatory argument report_generator_name like
 user_activity
+
 c. Handler by given argument should execute relevant generator’s method
 generate()
 
 2. UserActivityReportGenerator
+
 a. Class must contain single method generate() which outputs following text “User
 Activity Generator” when executed
 
 3. UserPaymentsReportGenerator
+
 a. Class must contain single method generate() which outputs following text “User
 Payments Parser” when executed
 
