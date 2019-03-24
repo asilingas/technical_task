@@ -1,72 +1,51 @@
-Symfony Standard Edition
-========================
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+Situation is: you have a ReportHandlerCommand which generates various reports about user
+activity, payments, etc.
+Handler itself does not generate reports. It only executes generators. Each generator creates
+different reports. For example UserActivityReportGenerator generates report based on user
+activity, UserPaymentsReportGenerator generates report about payments, made by users, etc.
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+You get the idea, right?
 
-What's inside?
---------------
+Your job is to write 3 classes:
+1. ReportHandlerCommand
 
-The Symfony Standard Edition is configured with the following defaults:
+a. Command name should be report:handler
 
-  * An AppBundle you can use to start coding;
+b. You must pass one mandatory argument report_generator_name like
+user_activity
 
-  * Twig as the only configured template engine;
+c. Handler by given argument should execute relevant generator’s method
+generate()
 
-  * Doctrine ORM/DBAL;
+2. UserActivityReportGenerator
 
-  * Swiftmailer;
+a. Class must contain single method generate() which outputs following text “User
+Activity Generator” when executed
 
-  * Annotations enabled for everything.
+3. UserPaymentsReportGenerator
 
-It comes pre-configured with the following bundles:
+a. Class must contain single method generate() which outputs following text “User
+Payments Parser” when executed
 
-  * **FrameworkBundle** - The core Symfony framework bundle
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
+Requirements:
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+1. Method generate() is mandatory. Make sure each generator implements it.
 
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
+2. Generators are not Symfony Commands.
 
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
+3. Handler should know automatically about new generators. You cannot pass generators
+to Handler’s __construct() method
 
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
+4. Use Symfony 3.4
 
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
+5. Use tags
+    
+    
+Desired example:
 
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
+bin/console report:handler user_activity should output User Activity Generator
+bin/console report:handler user_payments should output User Payments Generator
 
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev env) - Adds code generation
-    capabilities
-
-  * [**WebServerBundle**][14] (in dev env) - Adds commands for running applications
-    using the PHP built-in web server
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/3.4/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/3.4/doctrine.html
-[8]:  https://symfony.com/doc/3.4/templating.html
-[9]:  https://symfony.com/doc/3.4/security.html
-[10]: https://symfony.com/doc/3.4/email.html
-[11]: https://symfony.com/doc/3.4/logging.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
-[14]: https://symfony.com/doc/current/setup/built_in_web_server.html
+Good luck!
