@@ -1,3 +1,4 @@
+
 Situation is: you have a ReportHandlerCommand which generates various reports about user
 activity, payments, etc.
 Handler itself does not generate reports. It only executes generators. Each generator creates
