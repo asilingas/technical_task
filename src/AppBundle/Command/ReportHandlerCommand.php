@@ -16,6 +16,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ReportHandlerCommand extends Command
 {
+    private $reportGenerators;
+
+    public function addReportGenerator($reportGenerator, $alias)
+    {
+        $this->reportGenerators[$alias] = $reportGenerator;
+    }
+
     protected function configure()
     {
         $this->setName('report:handler');
@@ -27,16 +34,10 @@ class ReportHandlerCommand extends Command
     {
         $report_name = $input->getArgument('report_generator_name');
 
-        if ($report_name == "user_activity") {
-
-//            TODO
-
-            $output->write('');
-        } elseif ($report_name == "user_payments") {
-
-//            TODO
-
-            $output->write('');
+        if (array_key_exists($report_name, $this->reportGenerators)) {
+            $output->write($this->reportGenerators[$report_name]->generate());
+        } else {
+            $output->write('There isn\'t a defined report generator called: '.$report_name);
         }
     }
 }

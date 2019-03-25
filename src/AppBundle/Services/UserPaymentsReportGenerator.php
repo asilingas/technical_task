@@ -13,7 +13,7 @@ class UserPaymentsReportGenerator implements ReportGeneratorInterface
 {
     public function generate()
     {
-        $outputText = "“User Payments Parser";
+        $outputText = "User Payments Parser";
 
         return $outputText;
     }
